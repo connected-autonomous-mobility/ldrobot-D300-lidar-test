@@ -22,6 +22,7 @@ rainer@jetsonautoware46:~/projects/ldlidar_stl_sdk/build$
 ```
 
 ## 2 ros - rviz
+[install ros package](https://github.com/ldrobotSensorTeam/ldlidar_stl_ros)
 ```
 rainer@jetsonautoware46:~/ldlidar_ros_ws$ 
 roslaunch ldlidar_stl_ros ld06.launch
