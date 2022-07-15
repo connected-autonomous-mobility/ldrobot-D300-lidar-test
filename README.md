@@ -3,10 +3,10 @@ testing lidar https://www.ldrobot.com/product/en/126
 
 [README](https://github.com/ldrobotSensorTeam/DeveloperKit/blob/master/D300Kit.md)
 
-- [python](https://github.com/henjin0/LIDAR_LD06_python_loder)
 
 
-## 1 simple test
+
+## 1 sdk
 ```
 rainer@jetsonautoware46:~/projects/ldlidar_stl_sdk/build$ 
 ./ldlidar_stl /dev/ttyUSB0
@@ -27,3 +27,14 @@ rainer@jetsonautoware46:~/ldlidar_ros_ws$
 roslaunch ldlidar_stl_ros ld06.launch
 ```
 ![](./media/ros-rviz.png)
+
+
+## 3 python
+```
+git clone https://github.com/henjin0/LIDAR_LD06_python_loder.git
+cd ~/projects/LIDAR_LD06_python_loder
+python main.py 
+```
+note: change port to correct value in *main.py*
+
+![](./media/pythontest.png)
