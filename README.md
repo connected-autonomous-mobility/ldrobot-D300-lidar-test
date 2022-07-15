@@ -20,3 +20,10 @@ rainer@jetsonautoware46:~/projects/ldlidar_stl_sdk/build$
 [ldrobot] angle: 337.32 distance(mm): 855 intensity: 231 
 [ldrobot] angle: 338.19 distance(mm): 855 intensity: 232 
 ```
+
+## 2 ros - rviz
+```
+rainer@jetsonautoware46:~/ldlidar_ros_ws$ 
+roslaunch ldlidar_stl_ros ld06.launch
+```
+![](./media/ros-rviz.png)
