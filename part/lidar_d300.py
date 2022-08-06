@@ -200,7 +200,7 @@ class D300Lidar(object):
                             self.new_scan = True
                         else:
                             self.new_scan = False
-                        angle = angles[i]
+                        angle = angles[i]*math.pi/180.0 # we need angles in deg
                         distance = distances[i]
                         #self.measurements.append((distance, angle, time.time(), self.full_scan_count, self.full_scan_index))
                         
@@ -1223,3 +1223,6 @@ if __name__ == "__main__":
             cv2.destroyAllWindows()
         if lidar_thread is not None:
             lidar_thread.join()  # wait for thread to end
+
+# (env) rainer@jetsonautoware46:~/projects/ldrobot-D300-lidar-test/part$ 
+# python lidar_d300.py -n 40 -d 0 -D 3000 -a 0 -A 360
