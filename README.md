@@ -36,6 +36,13 @@ git clone https://github.com/henjin0/LIDAR_LD06_python_loder.git
 cd ~/projects/LIDAR_LD06_python_loder
 python main.py 
 ```
+or in this repo
+```
+cd ldrobot-D300-lidar-test
+rainer@jetsonautoware46:~/projects/ldrobot-D300-lidar-test$ 
+python ld06_main.py 
+```
+
 note: change port to correct value in *main.py*
 
 ![](./media/pythontest.png)
