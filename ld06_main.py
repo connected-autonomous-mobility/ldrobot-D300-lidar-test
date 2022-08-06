@@ -29,16 +29,16 @@ while True:
     loopFlag = True
     flag2c = False
 
-    #if(i % 40 == 39):
-    #    if('line' in locals()):
-    #        line.remove()
-    #    line = ax.scatter(angles, distances, c="pink", s=5)
-#
-    #    ax.set_theta_offset(math.pi / 2)
-    #    plt.pause(0.01)
-    #    angles.clear()
-    #    distances.clear()
-    #    i = 0
+    if(i % 40 == 39):
+        if('line' in locals()):
+            line.remove()
+        line = ax.scatter(angles, distances, c="pink", s=5)
+
+        ax.set_theta_offset(math.pi / 2)
+        plt.pause(0.01)
+        angles.clear()
+        distances.clear()
+        i = 0
         
 
     while loopFlag:
@@ -62,6 +62,8 @@ while True:
             lidarData = CalcLidarData(tmpString[0:-5])
             angles.extend(lidarData.Angle_i)
             distances.extend(lidarData.Distance_i)
+            #print(lidarData.Distance_i)
+            #print(lidarData.Angle_i)
                 
             tmpString = ""
             loopFlag = False
