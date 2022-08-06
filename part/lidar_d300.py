@@ -280,7 +280,10 @@ class D300Lidar(object):
                                 self.measurement_index += 1
                                 self.full_scan_index += 1                                
                     #print(f"full_scan_count: {self.full_scan_count} measurements {self.measurements} ")
-                                                                                                                                                
+                    print(f"i = {self.full_scan_count}")
+                    print(angles)
+                    print(distances)
+
                     self.tmpString = ""
                     self.loopFlag = False
                 else:

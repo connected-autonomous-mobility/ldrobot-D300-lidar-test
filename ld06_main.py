@@ -62,8 +62,9 @@ while True:
             lidarData = CalcLidarData(tmpString[0:-5])
             angles.extend(lidarData.Angle_i)
             distances.extend(lidarData.Distance_i)
-            #print(lidarData.Distance_i)
-            #print(lidarData.Angle_i)
+            print(f"i = {i}")
+            print(lidarData.Distance_i)
+            print(lidarData.Angle_i)
                 
             tmpString = ""
             loopFlag = False
