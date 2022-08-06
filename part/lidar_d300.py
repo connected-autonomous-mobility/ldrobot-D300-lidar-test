@@ -16,6 +16,12 @@ import numpy as np
 from donkeycar.utils import norm_deg, dist, deg2rad, arr_to_img
 from PIL import Image, ImageDraw
 
+# specific imports
+import glob
+import serial
+import binascii
+from CalcLidarData import CalcLidarData
+
 logger = logging.getLogger("donkeycar.parts.lidar")
 
 CLOCKWISE = 1
@@ -99,13 +105,6 @@ class D300Lidar(object):
         self.forward_angle = forward_angle
         self.spin_reverse = (args.angle_direction != CLOCKWISE)
         self.measurements = [] # list of (distance, angle, time, scan, index) 
-
-        # specific imports
-        #from adafruit_rplidar import RPLidar
-        import glob
-        import serial
-        import binascii
-        from CalcLidarData import CalcLidarData
         
         #
         # find the serial port where the lidar is connected
@@ -160,6 +159,7 @@ class D300Lidar(object):
         self.running = True
         self.lidarData = None
         print(f"D300Lidar initialized on {PORT_NAME}")
+        self.new_scan = False
 
     def poll(self):
         if self.running:
@@ -172,12 +172,13 @@ class D300Lidar(object):
                 tmpInt = int.from_bytes(b, 'big')
                 print(f"reading D300Lidar {tmpInt} {b.hex()}")
                 if (tmpInt == 0x54):
-                    print(f"found 0x54")
+                    print(f"found 0x54 - new data package available")
                     self.tmpString +=  b.hex()+" "
                     print(f"tmpString: {self.tmpString}")
                     self.flag2c = True
+                    # new scan available
+                    self.new_scan = True 
                     return
-                    #continue
 
                 elif(tmpInt == 0x2c and self.flag2c):
                     self.tmpString += b.hex()
@@ -187,18 +188,22 @@ class D300Lidar(object):
                         self.loopFlag = False
                         self.flag2c = False
                         return
-                        #continue
 
                     self.lidarData = CalcLidarData(self.tmpString[0:-5])
-                    #self.angles.extend(self.lidarData.Angle_i)
-                    #self.distances.extend(self.lidarData.Distance_i)
-                        
+                    print(f"lidarData: {self.lidarData}")
+                    self.angles.extend(self.lidarData.Angle_i)
+                    self.distances.extend(self.lidarData.Distance_i)
+                    print(self.inumber, self.lidarData.Angle_i, self.lidarData.Distance_i)
+                    angle = self.lidarData.Angle_i
+                    distance = self.lidarData.Distance_i
+                    print(f">>>> i = {self.total_measurements} >> {angle}, >> {distance}")
+
                     self.tmpString = ""
                     self.loopFlag = False
                 else:
                     self.tmpString += b.hex()+" "
                 
-                flag2c = False
+                self.flag2c = False
 
                 # sample output
                 #print(self.inumber, self.lidarData.Angle_i, self.lidarData.Distance_i)
@@ -208,13 +213,13 @@ class D300Lidar(object):
                 now = time.time()
                 self.total_measurements += 1
 
-                """
                 # check for start of new scan
-                if new_scan:
+                if self.new_scan:
                     self.full_scan_count += 1
                     self.full_scan_index = 0
                     self.measurement_count = self.measurement_index  # this full scan
                     self.measurement_index = 0   # start filling in next scan
+                """
                     
                 #
                 # rplidar spins clockwise,
