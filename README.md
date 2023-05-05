@@ -46,3 +46,7 @@ python ld06_main.py
 note: change port to correct value in *main.py*
 
 ![](./media/pythontest.png)
+
+## [coordinate sytem / technical data](https://www.waveshare.com/wiki/DTOF_LIDAR_LD19)
+LD19 uses the left-handed coordinate system, the front side of the sensor is defined as the x-axis (namely the zero direction), the rotation center is the coordinate origin, and the rotation angle increases along the clockwise direction. Please refer to the below photo:
+![](media/DTOF-Coordinate.png)

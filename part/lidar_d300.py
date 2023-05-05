@@ -6,6 +6,8 @@ Lidar
 # requires Adafruit RPLidar driver to be installed:
 #   pip install Adafruit_CircuitPython_RPLIDAR
 #
+# https://www.waveshare.com/wiki/DTOF_LIDAR_LD19
+#
 import logging
 import sys
 import time
